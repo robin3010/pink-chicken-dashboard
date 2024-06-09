@@ -1,0 +1,40 @@
+@use '/src/styles/styles' as *;
+
+.pers-assistant__buttons {
+  @extend %flex-center;
+  @extend %btn-gap;
+  @include respond-to(small) {
+    flex-direction: column;
+    align-items: end;
+    padding: 0;
+  }
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  padding: 20px;
+  margin-top: auto;
+  width: 100%;
+}
+
+@mixin pers-assistant__button($bg_color) {
+  @extend %btn;
+  @include respond-to(small) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  padding: 12px 22px;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 600;
+  color: var(--color-btn-text);
+  border-radius: 21px;
+  border: none;
+  background-color: var(--color-btn-#{$bg_color});
+}
+
+.pers-assistant__btn_primary {
+  @include pers-assistant__button(primary);
+}
+
+.pers-assistant__btn_accent {
+  @include pers-assistant__button(accent);
+}

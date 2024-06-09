@@ -1,0 +1,73 @@
+@use '/src/styles/styles' as *;
+
+.chat-message {
+  @include respond-to(small) {
+    gap: 10px;
+  }
+  display: flex;
+  gap: 13px;
+  &.user {
+    justify-content: flex-end;
+  }
+}
+
+.chat-history__date,
+.chat-message__send-time {
+  color: var(--color-secondary);
+  line-height: 135%;
+}
+
+.chat-history__date {
+  @include respond-to(small) {
+    padding-top: 0;
+  }
+  padding-top: 49px;
+  text-align: center;
+  padding-bottom: 6px;
+}
+
+.chat-message__content {
+  @extend %flex-column;
+  gap: 8px;
+  &.user {
+    align-items: flex-end;
+  }
+}
+
+.chat-message__text {
+  @include respond-to(small) {
+    font-size: 14px;
+    width: 257px;
+  }
+  @include respond-to(medium) {
+    width: 454px;
+  }
+  box-sizing: border-box;
+  width: 541px;
+  white-space: pre-wrap;
+  padding: 16px 22px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 12px;
+  background-color: var(--bg-body-white);
+  &.user {
+    @include respond-to(small) {
+      width: 301px;
+    }
+    @include respond-to(medium) {
+      width: 454px;
+    }
+    width: 541px;
+  }
+}
+
+.chat-message__sended {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+}
+
+.chat-message__sended-by {
+  font-size: 18px;
+  font-weight: 600;
+}

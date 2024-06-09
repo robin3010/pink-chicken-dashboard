@@ -1,0 +1,74 @@
+@use '/src/styles/styles' as *;
+
+.pers-assistant__chat-form {
+  @include respond-to(small) {
+    border: 2px solid var(--bg-body-white);
+  }
+  height: 144px;
+  width: 100%;
+  border-radius: 20px;
+  box-sizing: border-box;
+  background-color: var(--bg-body-white);
+  border: 2px solid var(--bg-body-secondary);
+  &:focus-within {
+    border: 2px solid var(--color-accent);
+  }
+  & textarea {
+    box-sizing: border-box;
+    width: calc(100% - 70px);
+    height: 80px;
+    margin: 20px 70px 44px 20px;
+    background-color: var(--bg-body-white);
+    outline: none;
+    border: none;
+  }
+}
+
+.pers-assistant__chat-actions {
+  position: relative;
+  bottom: 50px;
+  padding: 0 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pers-assistant__chat-files {
+  display: flex;
+  gap: 20px;
+}
+
+.pers-assistant__add-file {
+  @include icon(pers-assistant, add-file, 24, false, false);
+}
+
+.pers-assistant__add-image {
+  @include icon(pers-assistant, add-image, 24, false, false);
+}
+
+.pers-assistant__submit-btn {
+  @include icon(pers-assistant, send, 50);
+  @include respond-to(small) {
+    bottom: 16px;
+  }
+  background-color: var(--color-btn-accent);
+  position: relative;
+  bottom: 32px;
+  &::after {
+    @extend %default-font;
+    @include respond-to(small) {
+      content: none;
+    }
+    content: 'Enter';
+    font-size: 10px;
+    line-height: 14px;
+    margin: auto auto 0;
+    position: relative;
+    top: 16px;
+  }
+}
+
+.pers-assistant__add-file,
+.pers-assistant__add-image,
+.pers-assistant__submit-btn {
+  @extend %btn;
+}

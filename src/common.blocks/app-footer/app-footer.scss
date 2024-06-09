@@ -1,0 +1,148 @@
+@use '/src/styles/styles' as *;
+
+%group {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+}
+
+%link {
+  @include transition-style(all, 0.2s);
+  text-decoration: none;
+  color: var(--color-secondary);
+  font-weight: 500;
+  &:hover {
+    color: var(--color-accent);
+    opacity: 0.8;
+  }
+}
+
+%active {
+  color: var(--color-accent);
+}
+
+%footer__text {
+  @extend %link;
+  @include respond-to(medium) {
+    align-self: flex-end;
+  }
+  @include respond-to(large) {
+    margin-left: auto;
+  }
+  font-size: 15px;
+}
+
+.app-footer {
+  @extend %flex-center;
+  @include respond-to(small) {
+    height: 292px;
+    background-color: var(--bg-body-white);
+  }
+  @include respond-to(medium) {
+    height: 162px;
+  }
+  @include respond-to(large) {
+    height: 95px;
+  }
+  background-color: var(--bg-body-secondary);
+}
+
+.app-footer__container {
+  @extend %nav-container;
+  @include respond-to(medium) {
+    width: min-content;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    column-gap: 41px;
+    row-gap: 22px;
+  }
+  @include respond-to(large) {
+    justify-content: flex-start;
+    gap: 65px;
+  }
+  gap: 20px;
+}
+
+.app-footer__brand {
+  @extend %brand;
+  @include respond-to(medium) {
+    width: 219px;
+    height: 32px;
+  }
+}
+
+.app-footer__content {
+  @include respond-to(small) {
+    align-items: flex-start;
+  }
+  @include respond-to(medium) {
+    flex-direction: row-reverse;
+    gap: 64px;
+  }
+  @include respond-to(large) {
+    flex-direction: row;
+    gap: 65px;
+  }
+  @extend %flex-column;
+  align-items: center;
+  gap: 20px;
+}
+
+.app-footer__content:first-of-type {
+  @include respond-to(medium) {
+    flex-direction: row;
+  }
+  @include respond-to(large) {
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+}
+
+.app-footer__privacy-link {
+  @include respond-to(small) {
+    line-height: 20px;
+    font-size: 14px;
+  }
+  @include respond-to(medium) {
+    align-self: flex-end;
+    padding-bottom: 2px;
+  }
+}
+
+.app-footer__email-link {
+  @extend %group;
+  &::before {
+    @include icon(app-footer, email, 24, pseudo);
+    align-items: unset;
+  }
+}
+
+.app-footer__global-icon {
+  @include icon(app-footer, global, 24);
+}
+
+.app-footer__lang-container,
+.app-footer__lang-group,
+.app-footer__feedback-group {
+  @extend %group;
+}
+
+.app-footer__email-link,
+.app-footer__lang-code,
+.app-footer__lang-code_accent,
+.app-footer__privacy-link {
+  @extend %footer__text;
+}
+
+.app-footer__lang-code,
+.app-footer__lang-code_accent {
+  @extend %btn;
+}
+
+.app-footer__telegram-link {
+  @include icon(app-footer, telegram, 40);
+}
+
+.app-footer__whatsapp-link {
+  @include icon(app-footer, whatsapp, 40);
+}

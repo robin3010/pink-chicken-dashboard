@@ -1,0 +1,53 @@
+@use '/src/styles/styles' as *;
+
+.files-list__file-container {
+  @extend %default-font;
+  @extend %flex-center;
+  background-color: var(--bg-body-tertiary);
+  border-radius: 4px;
+}
+
+.files-list__file-type {
+  @include icon(files-list, folder-file, 24, false, false);
+  padding: 9px;
+  position: relative;
+  &::after {
+    content: 'xml';
+    font-size: 8px;
+    position: relative;
+    top: 1px;
+  }
+}
+
+.files-list__file-btn {
+  @extend %btn;
+  @include icon(files-list, arrow-down, 42, false, false);
+  padding: 9px;
+  background-color: #f4d4ed;
+  border-radius: 4px;
+  margin-left: auto;
+  &.pending {
+    background: url('/src/assets/icons/files-list/refresh.svg') no-repeat center;
+    background-color: #949494;
+  }
+}
+
+.files-list__file-status {
+  @extend %default-font;
+  font-size: 12px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 6px;
+}
+
+.files-list__status-icon.pending::before {
+  @extend %icon-pending;
+  display: block;
+}
+
+.files-list__status-icon.ready::before {
+  @extend %icon-ready;
+  display: block;
+}

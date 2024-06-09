@@ -1,0 +1,67 @@
+@use './styles/index.scss' as *;
+
+:root {
+  --color-main: #000;
+  --color-secondary: #525252;
+  --color-accent: #ee26c2;
+  --color-btn-primary: #2676ee;
+  --color-btn-accent: var(--color-accent);
+  --color-btn-text: #fff;
+  --color-link-hover: #000;
+  --bg-body-tertiary: #f5f5f5;
+  --bg-body-secondary: #ebebeb;
+  --bg-body-white: #fff;
+  --text-size-header: 18px;
+  --text-size-secondary: 16px;
+  @include respond-to(large) {
+    overflow: hidden;
+  }
+  overflow-y: auto;
+}
+
+body,
+textarea {
+  @extend %default-font;
+  margin: 0;
+  background-color: var(--bg-body-tertiary);
+  text-align: left;
+  color: var(--color-main);
+}
+
+.app {
+  @include respond-to(large) {
+    min-height: unset;
+    height: 100vh;
+  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-container {
+  @include container(scroll, fluid);
+  @include respond-to(small) {
+    padding-top: 0;
+    gap: 0;
+  }
+
+  @include respond-to(medium) {
+    gap: 20px;
+    overflow-y: scroll;
+  }
+
+  @include respond-to(large) {
+    flex-direction: row;
+    gap: 30px;
+    padding-bottom: 60px;
+  }
+
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: hidden;
+}

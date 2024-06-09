@@ -1,0 +1,98 @@
+@use '/src/styles/styles' as *;
+
+.pers-assistant {
+  @include main-block(875);
+  @include respond-to(small) {
+    background-color: var(--bg-body-secondary);
+  }
+  background-color: var(--bg-body-white);
+}
+
+.pers-assistant__container {
+  @extend %main-block-container;
+  @include respond-to(large) {
+    padding: 28px;
+    padding-left: 29px;
+    height: 100%;
+  }
+}
+
+.pers-assistant__chat-container {
+  @include respond-to(medium) {
+    max-height: 596px;
+    margin-right: -6px;
+  }
+  @include respond-to(large) {
+    height: calc(100% - 114px);
+  }
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-body-secondary);
+  border-radius: 20px;
+}
+
+.pers-assistant__chat-content {
+  @extend %flex-column;
+  @include respond-to(small) {
+    margin-right: -6px;
+    margin-bottom: 20px;
+    height: 556px;
+  }
+  height: calc(100% - 114px);
+  margin-right: 0;
+  overflow-y: scroll;
+}
+
+.pers-assistant__chat-content_empty {
+  @extend %flex-center;
+  @include respond-to(small) {
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+  @include respond-to(large) {
+    flex-grow: 1;
+  }
+  padding: 0;
+  flex-direction: column;
+  & img {
+    @include respond-to(medium) {
+      width: 180px;
+      height: 183px;
+    }
+    @include respond-to(medium) {
+      width: 190px;
+      height: 193px;
+    }
+    width: 130px;
+    height: 132px;
+    padding: 20px 0;
+  }
+  & span {
+    @include respond-to(small) {
+      font-size: 14px;
+      padding: 0 32px 63px;
+      line-height: 20px;
+    }
+    @include respond-to(medium) {
+      padding: 0 142px 0 134px;
+    }
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 23px;
+    text-align: center;
+    padding: 0 174px;
+  }
+}
+
+.pers-assistant__chat-history {
+  @extend %flex-column;
+  @include respond-to(small) {
+    gap: 20px;
+    padding: 0 0 20px;
+  }
+  @include respond-to(medium) {
+    gap: 12px;
+  }
+  gap: 11px;
+  padding: 0 20px 20px;
+}

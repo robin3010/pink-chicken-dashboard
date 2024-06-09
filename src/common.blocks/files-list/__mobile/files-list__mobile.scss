@@ -1,0 +1,39 @@
+@use '/src/styles/styles' as *;
+
+@mixin files-list__outline-btn($border_color) {
+  color: var(--color-main);
+  border: 1px solid var(--color-btn-#{$border_color});
+  background-color: var(--bg-body-white);
+  display: flex;
+  &.ready::after {
+    @extend %icon-ready;
+    margin-left: 10px;
+  }
+  &.pending::after {
+    @extend %icon-pending;
+    margin-left: 10px;
+  }
+}
+
+.files-list__mobile {
+  @extend %flex-center;
+  gap: 12px;
+  padding-top: 4px;
+  & button {
+    @extend %btn;
+    height: 41px;
+    background-color: #cbcbcb;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+.files-list__mobile-btn_accent.outline {
+  @include files-list__outline-btn(accent);
+}
+
+.files-list__mobile-btn_primary.outline {
+  @include files-list__outline-btn(primary);
+}

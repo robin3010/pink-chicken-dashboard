@@ -1,0 +1,129 @@
+@use '/src/styles/styles' as *;
+
+%header-text {
+  @include respond-to(small) {
+    font-size: 14px;
+    height: 17px;
+  }
+  @include respond-to(medium) {
+    font-size: 16px;
+  }
+  @include respond-to(large) {
+    font-size: 18px;
+  }
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-header {
+  @extend %flex-center;
+  @include respond-to(small) {
+    align-items: flex-start;
+    padding-top: 28px;
+    background-color: var(--bg-body-white);
+  }
+  @include respond-to(medium) {
+    height: 70px;
+  }
+  @include respond-to(large) {
+    height: 77px;
+    padding-bottom: 4px;
+  }
+  align-items: flex-end;
+}
+
+.app-header__container {
+  @extend %nav-container;
+}
+
+.app-header__brand {
+  @extend %brand;
+}
+
+.app-header__user-panel {
+  @include respond-to(small) {
+    width: 100%;
+    justify-content: space-between;
+  }
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.app-header__user-info {
+  @include respond-to(small) {
+    gap: 4px;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @include respond-to(medium) {
+    gap: 20px;
+  }
+  @include respond-to(large) {
+    gap: 26px;
+  }
+  display: flex;
+  flex-direction: row-reverse;
+  height: 40px;
+}
+
+.app-header__user-name {
+  @extend %header-text;
+  &::before {
+    @include icon(app-header, user, 40, pseudo);
+    background-color: var(--color-accent);
+  }
+}
+
+.app-header__user-card {
+  @extend %header-text;
+  @include respond-to(small) {
+    font-size: 12px;
+    height: 15px;
+    font-weight: 500;
+    color: #797979;
+    justify-content: flex-start;
+    gap: 0;
+  }
+  &::before {
+    @include icon(app-header, card, 40, pseudo);
+    background-color: var(--color-accent);
+  }
+  &::after {
+    @include respond-to(small) {
+      content: ' выручки';
+      white-space: pre;
+    }
+    content: none;
+  }
+}
+
+.app-header__user-name::before,
+.app-header__user-card::before {
+  @include respond-to(small) {
+    content: none;
+  }
+}
+
+.app-header__user-buttons {
+  @extend %btn-gap;
+}
+
+.app-header__setting-btn {
+  @include icon(app-header, setting, 40);
+}
+
+.app-header__login-btn {
+  @include icon(app-header, login, 40);
+}
+
+.app-header__setting-btn,
+.app-header__login-btn {
+  @extend %btn;
+  @include respond-to(small) {
+    background-color: var(--bg-body-tertiary);
+  }
+  background-color: var(--bg-body-white);
+}

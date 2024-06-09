@@ -1,0 +1,177 @@
+$medium: 768px;
+$large: 1440px;
+$scroll: 6px !default;
+
+@function scrollOffset($scrollable) {
+  @if $scrollable == scroll {
+    @return $scroll;
+  } @else if $scrollable == fixed {
+    @return 0;
+  }
+}
+
+@mixin transition-style($prop: all, $delay: 0.3s) {
+  transition: $prop $delay cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+@mixin respond-to($media) {
+  @if $media == small {
+    @media only screen and (max-width: ($medium - 1)) {
+      @content;
+    }
+  } @else if $media == medium {
+    @media only screen and (min-width: $medium) and (max-width: ($large - 1)) {
+      @content;
+    }
+  } @else if $media == large {
+    @media only screen and (min-width: $large) {
+      @content;
+    }
+  }
+}
+
+@mixin container($scrollable, $fluid: false) {
+  @include respond-to(medium) {
+    padding-left: 40px;
+    padding-right: 40px - scrollOffset($scrollable);
+  }
+  @include respond-to(large) {
+    padding-left: 120px;
+    padding-right: 120px - scrollOffset($scrollable);
+  }
+  padding-top: 0;
+  padding-bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  @if $fluid {
+    @include respond-to(small) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  } @else {
+    @include respond-to(small) {
+      padding-left: 20px;
+      padding-right: 20px - scrollOffset($scrollable);
+    }
+  }
+}
+
+@mixin main-block($width) {
+  @include respond-to(small) {
+    border-radius: 0;
+  }
+  @include respond-to(large) {
+    width: #{$width}px;
+  }
+  background-color: var(--bg-body-white);
+  border-radius: 20px;
+  box-shadow: 0px 0px 30px 0px #00000014;
+}
+
+%main-block-container {
+  @include respond-to(small) {
+    padding: 20px 20px 30px;
+  }
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+@mixin icon($path, $name, $size, $pseudo: false, $round: true) {
+  border-radius: 50%;
+  width: #{$size}px;
+  height: #{$size}px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @if $pseudo {
+    content: url('/src/assets/icons/#{$path}/#{$name}.svg');
+  } @else {
+    background: url('/src/assets/icons/#{$path}/#{$name}.svg') no-repeat center;
+  }
+  @if $round {
+    border-radius: 50%;
+  } @else {
+    border-radius: 0;
+  }
+}
+
+%icon-ready {
+  @include icon(files-list, checkmark, 16, true);
+}
+
+%icon-pending {
+  @include icon(files-list, exclamation, 16, true);
+  background-color: var(--bg-body-white);
+}
+
+%default-font {
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 145%;
+}
+
+%flex-center {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+%nav-container {
+  @include container(fixed);
+  @include respond-to(small) {
+    flex-direction: column;
+    justify-content: unset;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+%brand {
+  @include respond-to(medium) {
+    width: 209px;
+    height: 29px;
+    align-self: flex-start;
+  }
+  @include respond-to(large) {
+    width: 219px;
+    height: 32px;
+  }
+  width: 181px;
+  height: 24px;
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+%btn {
+  @include transition-style(opacity, 0.2s);
+  border: 0 solid transparent;
+  padding: 0;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+%btn-gap {
+  display: flex;
+  gap: 12px;
+}
+
+%title {
+  font-size: 24px;
+  font-weight: 600;
+}

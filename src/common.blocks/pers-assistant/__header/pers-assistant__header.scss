@@ -1,0 +1,97 @@
+@use '/src/styles/styles' as *;
+
+.pers-assistant__header {
+  @include respond-to(small) {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 20px;
+  }
+  @include respond-to(medium) {
+    flex-wrap: nowrap;
+    gap: 26px;
+  }
+  display: flex;
+  align-items: center;
+  padding-bottom: 19px;
+}
+
+.pers-assistant__assistant-name {
+  font-weight: 600;
+}
+
+.pers-assistant__header-title {
+  @extend %title;
+  @include respond-to(small) {
+    margin-right: 0;
+    padding-bottom: 0;
+    font-size: 20px;
+  }
+  margin-right: auto;
+  padding-bottom: 6px;
+  order: 1;
+}
+
+.pers-assistant__assistant-info {
+  @include respond-to(small) {
+    order: 3;
+  }
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  order: 1;
+}
+
+.pers-assistant__assistant-email {
+  font-size: 14px;
+  color: var(--color-secondary);
+}
+
+.pers-assistant__menu-button {
+  @extend %btn;
+  @include icon(pers-assistant, menu, 40);
+  @include respond-to(small) {
+    margin-top: 0px;
+  }
+  @include respond-to(medium) {
+    margin-right: -5px;
+  }
+  margin-top: -2px;
+  margin-left: 26px;
+  margin-right: 0;
+  background-color: var(--bg-body-tertiary);
+  order: 2;
+  position: relative;
+  &.active {
+    opacity: 1;
+  }
+}
+
+.pers-assistant__menu {
+  @extend %flex-column;
+  box-sizing: content-box;
+  align-items: flex-end;
+  width: 272px;
+  height: 50px;
+  padding: 16px 30px;
+  margin-top: 8px;
+  border-radius: 8px;
+  background-color: var(--bg-body-white);
+  box-shadow: 0px 0px 30px 0px #00000014;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 999;
+}
+
+.pers-assistant__menu-option {
+  @extend %btn;
+  font-size: 16px;
+  letter-spacing: 0.55px;
+  font-weight: 500;
+  height: 25px;
+  background-color: var(--bg-body-white);
+  border: none;
+  &:hover {
+    color: var(--color-btn-accent);
+  }
+}
